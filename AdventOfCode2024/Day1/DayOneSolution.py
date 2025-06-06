@@ -19,33 +19,58 @@ except ValueError:
 print("List A: ", list_a)
 print("List B: ", list_b)
 
+# Make A copy of the lists:
+part1_List_a = list_a.copy()
+part1_List_b = list_b.copy()
 
 # Lets sort them from lowest to highest:
-list_a.sort()
-list_b.sort()
+part1_List_a.sort()
+part1_List_b.sort()
 
-print("List A: ", list_a)
-print("List B: ", list_b)
+print("List A: ", part1_List_a)
+print("List B: ", part1_List_b)
 
 # Lets make another list, to store all the differences into:
 differences = []
 
 # Check that each list has same length:
-if len(list_a) != len(list_b):
+if len(part1_List_a) != len(part1_List_b):
     print("Warning: Lists are not same length! Not going to get accurate results...")
-    min_length = min(len(list_a), len(list_b))
+    min_length = min(len(part1_List_a), len(part1_List_b))
 else:
-    min_length = len(list_a)
+    min_length = len(part1_List_a)
 
 # Calculate the difference between two ID Numbers:
 for i in range(min_length):
-    diff = abs(list_a[i] - list_b[i])
+    diff = abs(part1_List_a[i] - part1_List_b[i])
     differences.append(diff)
 
-print("\nList of Differences:", differences)
+#print("\nList of Differences:", differences)
 
 # Sum of all differences
 total_difference = sum(differences)
 
+print("========================")
+print("PART ONE:")
 print("Total Sum of Differences:", total_difference)
 
+# Part 2 of this problem:
+similarity_score = 0
+
+# Iterate through each number in the first list:
+for number_a in list_a:
+    # Count how many times 'number_a' appears in list_b:
+    count_in_b = list_b.count(number_a)
+
+    # Calculate the score for this number:
+    score_for_current_number = number_a * count_in_b
+
+    # Add to the total similarity score
+    similarity_score += score_for_current_number
+
+    #print(f"Numner from List A: {number_a}, appears in List B: {count_in_b} times.")
+    
+print("========================")
+print("PART TWO:")
+print(f"Final Similarity Score:", similarity_score)
+print("========================")
